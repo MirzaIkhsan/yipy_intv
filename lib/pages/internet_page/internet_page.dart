@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:yipy_intv/pages/internet_page/internet_controller.dart';
 import 'package:yipy_intv/pages/internet_page/sections/history_section.dart';
 import 'package:yipy_intv/pages/internet_page/sections/pay_section.dart';
@@ -20,27 +21,35 @@ class InternetPage extends StatelessWidget {
         title: 'Internet',
         leading: DefaultBackButton(),
       ),
-      body: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: TransactionsSection(controller: controller),
-              ),
-              const DefaultSliverHeight(gap: 6),
-              SliverToBoxAdapter(
-                child: HistorySection(controller: controller),
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: PaySection(controller: controller),
-          ),
-        ],
-      ),
+      body: Obx(() {
+        if (controller.items.value == null) {
+          return const Center(
+            child: CircularProgressIndicator(color: Color(0xFFE12029)),
+          );
+        }
+        return Stack(
+          children: [
+            CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: TransactionsSection(controller: controller),
+                ),
+                const DefaultSliverHeight(gap: 6),
+                SliverToBoxAdapter(
+                  child: HistorySection(controller: controller),
+                ),
+                const DefaultSliverHeight(gap: 200),
+              ],
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: PaySection(controller: controller),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

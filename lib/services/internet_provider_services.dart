@@ -32,4 +32,15 @@ abstract class InternetProviderServices {
       ),
     ];
   }
+
+  /// Return transaction id
+  static Future<String?> purchaseInternetProviders(
+    List<InternetTransactionItemModel> item,
+  ) async {
+    if (item.isEmpty) return null;
+
+    /// Mock purchasing internet provider
+    await Future.delayed(2.seconds);
+    return 'BC444724669887648110';
+  }
 }

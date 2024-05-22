@@ -63,7 +63,7 @@ class PaySection extends StatelessWidget {
               }
               return TextButton(
                 onPressed: controller.items.value!.isThereAnyCheckedItem
-                    ? () {}
+                    ? controller.onPay
                     : null,
                 style: TextButton.styleFrom(
                   backgroundColor: controller.items.value!.isThereAnyCheckedItem

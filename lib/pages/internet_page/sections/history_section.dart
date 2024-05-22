@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yipy_intv/pages/internet_page/internet_controller.dart';
+import 'package:yipy_intv/pages/transaction_history_page/transaction_history_page.dart';
 
 class HistorySection extends StatelessWidget {
   const HistorySection({super.key, required this.controller});
@@ -10,6 +11,7 @@ class HistorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onRedirect,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         width: double.infinity,
@@ -30,5 +32,9 @@ class HistorySection extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onRedirect() {
+    Get.to(() => const TransactionHistoryPage());
   }
 }
